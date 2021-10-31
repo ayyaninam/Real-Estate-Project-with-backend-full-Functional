@@ -1,0 +1,42 @@
+{% extends 'base.html' %}\
+
+{% block body %}
+    {% if properties == None %}
+    <div class="container d-flex justify-content-center align-items-center my-5">
+    
+        <button class="btn btn-danger">
+            <h1>No query Match try a different query. Thanks</h1>
+        </button>
+    </div>
+
+    {% endif %}
+
+    {% if properties != None %}
+
+    
+<div class="container mt-5">
+
+    {% for property in properties %}
+          
+    <div class="card mt-5 mx-1 d-inline-block" style="width: 18rem;">
+      <img src="/media/{{property.image}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <!-- <p>By: <button class="btn btn-sm btn-success">{{property.dealer}}</button></p> -->
+          <h5 class="card-title">{{property.title}} <button type="button" class="btn btn-sm btn-dark">Rs. {{property.price}}</button></h5>
+          <p class="card-text">{{property.description|slice:":100"}}....................</p>
+          <div class="mt-1 mb-1 properties_pro">
+            <button type="button" class="btn mt-1 btn-sm btn-secondary">For: {{property.purpose}}</button>
+            <button type="button" class="btn mt-1 btn-sm btn-secondary">{{property.city}}</button>
+            <button type="button" class="btn mt-1 btn-sm btn-secondary">{{property.category}}</button>
+            <button type="button" class="btn mt-1 btn-sm btn-secondary">{{property.area}} {{property.unit}}</button>
+          </div>
+          <a href="property/{{property.sno}}" class="btn btn-primary">Check Full Details</a>
+        </div>
+      </div>
+
+      {% endfor %}
+
+</div>
+
+    {% endif %}
+{% endblock body %}

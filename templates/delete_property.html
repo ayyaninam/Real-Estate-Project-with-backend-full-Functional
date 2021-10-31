@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% if linked == "NO" %}
+    <div class="container d-flex justify-content-center align-items-center my-5">
+    
+        <button class="btn btn-danger">
+            <h1>Sorry! Your Request is not appropraite</h1>
+        </button>
+        
+    </div>
+    
+    {% endif %}
+{% endblock body %}

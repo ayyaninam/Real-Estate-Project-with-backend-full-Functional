@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% if eligible == "NO" %}
+        
+<div class="container d-flex justify-content-center align-items-center my-5">
+
+    <button class="btn btn-danger">
+
+        <h1>You are not eligible to create properties. Thanks</h1>
+    </button>
+    
+</div>
+{% endif %}
+
+{% if eligible == "YES" %}
+    <div class="container my-5">
+        <form action="/create-property" method="POST" class="row g-3" enctype="multipart/form-data"> {% csrf_token %}
+            <div class="col-md-4">
+                <label for="purpose" class="form-label">Purpose</label>
+                <select name="purpose" id="purpose" class="form-select">
+                  <option selected>BUY</option>
+                  <option selected>SELL</option>
+                  <option selected>RENT</option>
+                </select>
+              </div>
+            <div class="col-md-6">
+              <label for="title" class="form-label">Title</label>
+              <input name="title" type="text" class="form-control" id="title">
+            </div>
+            <div class="col-12">
+              <label for="area" class="form-label">Area</label>
+              <input name="area" type="number" class="form-control" id="area">
+            </div>
+            <div class="col-md-4">
+                <label for="unit" class="form-label">Unit</label>
+                <select name="unit" id="unit" class="form-select">
+                  <option selected>MARLA</option>
+                  <option selected>Kanal</option>
+
+                </select>
+              </div>
+            <div class="col-12">
+              <label for="price" class="form-label">Price</label>
+              <input name="price" type="number" class="form-control" id="price">
+            </div>
+            <div class="col-md-4">
+                <label for="category" class="form-label">Category</label>
+                <select name="category" id="category" class="form-select">
+                  <option selected>Plots</option>
+                  <option selected>Houses</option>
+                  <option selected>Appartment</option>
+                  <option selected>Commercial</option>
+
+                </select>
+              </div>
+            <div class="col-md-4">
+                <label for="city" class="form-label">City</label>
+                <select name="city" id="city" class="form-select">
+                  <option selected>Lahore</option>
+                  <option selected>Gujranwala</option>
+                  <option selected>Faisalabad</option>
+                </select>
+              </div>
+            <div class="col-md-6">
+              <label for="full_location" class="form-label">Full Location</label>
+              <input name="full_location" type="text" class="form-control" id="full_location">
+            </div>
+
+            <div class="col-md-6">
+              <label for="name" class="form-label">Name</label>
+              <input name="name" type="text" class="form-control" id="name">
+            </div>
+
+            <div class="col-md-6">
+              <label for="number" class="form-label">Number</label>
+              <input name="number" type="text" class="form-control" id="number">
+            </div>
+
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input name="email" type="email" class="form-control" id="email">
+            </div>
+
+        <div class="col-12">
+                <div class="col-md-6">
+                  <label for="desc" class="form-label">Description</label>
+                  <textarea name="desc" type="text" class="form-control" id="desc"></textarea>
+                </div>
+                <div class="col-md-6 my-2">
+                  <label for="img">Select image:</label>
+                  <input type="file" id="img" name="image" accept="image/*">
+                </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Create Property</button>
+            </div>
+          </form>
+    </div>
+{% endif %}
+{% endblock body %}

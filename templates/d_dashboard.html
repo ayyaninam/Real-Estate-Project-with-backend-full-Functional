@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block body %}
+  
+
+{% if eligible == "NO" %}
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Elibility</title>
+  </head>
+  <body>
+
+
+    <div class="container d-flex justify-content-center align-items-center my-5">
+    
+        <button class="btn btn-danger">
+            <h1>You are not eligible as a Dealer on APD Right Now. Comeback after some time if your submitted information is right..</h1>
+        </button>
+        
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>
+
+{% else %}
+
+<div class="container my-4">
+  <h3 class="d-flex justify-content-center text-success">Welcome, Our Dealers</h3>
+  <h1 class="mt-3 d-flex justify-content-center">All Your Properties</h1>
+  <div class="container d-flex justify-content-center">
+
+    <a class="" href="/create-property"><button class="btn btn-sm btn-secondary">Create New Properties</button></a>
+  </div>
+</div>
+
+
+<div class="container mt-5">
+
+  {% for property in all_dealer_properties %}
+        
+  <div class="card mt-5 mx-1 d-inline-block" style="width: 18rem;">
+    <img src="/media/{{property.image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <!-- <p>By: <button class="btn btn-sm btn-success">{{property.dealer}}</button></p> -->
+      Views: {{property.views}}
+        <h5 class="card-title">{{property.title}} <button type="button" class="btn btn-sm btn-dark">Rs. {{property.price}}</button></h5>
+        <!-- <p class="card-text">{{property.description|slice:":100"}}....................</p> -->
+        <div class="mt-1 mb-1 properties_pro">
+          <button type="button" class="btn mt-1 btn-sm btn-secondary">For: {{property.purpose}}</button>
+          <button type="button" class="btn mt-1 btn-sm btn-secondary">{{property.city}}</button>
+          <button type="button" class="btn mt-1 btn-sm btn-secondary">{{property.category}}</button>
+          <button type="button" class="btn mt-1 btn-sm btn-secondary">{{property.area}} {{property.unit}}</button>
+        </div>
+        <a href="property/{{property.sno}}" class="btn btn-primary">Details</a>
+        <a href="edit-property/{{property.sno}}" class="btn btn-warning">Edit</a>
+        <a href="delete-property/{{property.sno}}" class="btn btn-danger">Delete</a>
+      </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+    
+    {% endif %}
+
+
+
+    {% endblock body %}
+
+
+
+
+    

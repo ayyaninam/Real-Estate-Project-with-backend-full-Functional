@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block body %}
+    {% if linked == "NO" %}
+    <div class="container d-flex justify-content-center align-items-center my-5">
+    
+        <button class="btn btn-danger">
+            <h1>Sorry! Your Request is not appropraite</h1>
+        </button>
+        
+    </div>
+    
+    {% endif %}
+
+    {% if linked == "YES" %}
+
+      
+
+    <div class="container my-5">
+        <form action="/edit-property/{{property.sno}}" method="POST" class="row g-3" enctype="multipart/form-data"> {% csrf_token %}
+            <div class="col-md-4">
+                <label for="purpose" value="{{property.purpose}}" class="form-label">Purpose</label>
+                <select  name="purpose" id="purpose" class="form-select">
+                  <option>BUY</option>
+                  <option>SELL</option>
+                  <option>RENT</option>
+                </select>
+              </div>
+            <div class="col-md-6">
+              <label for="title" class="form-label">Title</label>
+              <input name="title" value="{{property.title}}" type="text" class="form-control" id="title">
+            </div>
+            <div class="col-12">
+              <label for="area" class="form-label">Area</label>
+              <input name="area" value="{{property.area}}" type="number" class="form-control" id="area">
+            </div>
+            <div class="col-md-4">
+                <label for="unit" class="form-label">Unit</label>
+                <select name="unit" id="unit" class="form-select">
+                  <option>MARLA</option>
+                  <option>Kanal</option>
+
+                </select>
+              </div>
+            <div class="col-12">
+              <label for="price" class="form-label">Price</label>
+              <input name="price" value="{{property.price}}" type="number" class="form-control" id="price">
+            </div>
+            <div class="col-md-4">
+                <label for="category" class="form-label">Category</label>
+                <select name="category" id="category" class="form-select">
+                  <option>Plots</option>
+                  <option>Houses</option>
+                  <option>Appartment</option>
+                  <option>Commercial</option>
+
+                </select>
+              </div>
+            <div class="col-md-4">
+                <label for="city" class="form-label">City</label>
+                <select name="city" id="city" class="form-select">
+                  <option>Lahore</option>
+                  <option>Gujranwala</option>
+                  <option>Faisalabad</option>
+                </select>
+              </div>
+            <div class="col-md-6">
+              <label for="full_location" class="form-label">Full Location</label>
+              <input name="full_location" value="{{property.full_location}}" type="text" class="form-control" id="full_location">
+            </div>
+
+            <div class="col-md-6">
+              <label for="name" class="form-label">Name</label>
+              <input name="name" value="{{property.name}}" type="text" class="form-control" id="name">
+            </div>
+
+            <div class="col-md-6">
+              <label for="number" class="form-label">Number</label>
+              <input name="number" value="{{property.number}}" type="number" class="form-control" id="number">
+            </div>
+
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input name="email" value="{{property.email}}" type="email" class="form-control" id="email">
+            </div>
+
+        <div class="col-12">
+                <div class="col-md-6">
+                  <label for="desc" class="form-label">Description</label>
+                  <textarea name="desc" type="text" class="form-control" id="desc">{{property.description}}</textarea>
+                </div>
+                <div onclick="image_upload_confirmation()" id="image_upload_confirmation">
+                  <Button type="button" class="my-2 btn btn-sm btn-success">Want to Change image?</Button>
+                </div>
+                <div hidden id="img_upload" class="col-md-6 my-2">
+                  <label for="img">Select different image:</label>
+                  <input type="file"  id="img" name="image" accept="image/*">
+                </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+          </form>
+    </div>
+
+    {% endif %}
+    <script>
+      document.getElementById("purpose").value = `{{property.purpose}}`
+      document.getElementById("unit").value = `{{property.unit}}`
+      document.getElementById("city").value = `{{property.city}}`
+      document.getElementById("category").value = `{{property.category}}`
+
+      function image_upload_confirmation() {
+        document.getElementById("image_upload_confirmation").hidden= true
+        document.getElementById("img_upload").hidden= false
+      }
+    </script>
+    {% endblock body %}

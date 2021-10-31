@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{%load static%}
+
+<style>
+    
+    img {
+            height: 250px;
+            object-fit: cover;
+        }
+</style>
+<div id="carouselExampleCaptions" class="header_image carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'app_usage/header 1.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Meet at one Point APD program</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, illo.</p>
+                    <a href="/buy"> <button type="button" class="btn btn-success">BUY</button></a>
+                    <a href="/sell"><button type="button" class="btn btn-warning">SELL</button></a>
+                    <a href="/rent"><button type="button" class="btn btn-info">RENT</button></a>
+                        <div class="container d-flex justify-content-center my-3">
+        {% if eligible == "YES" %}
+        <a class="d-flex" href="/dealer-dashboard"><button class="btn btn-primary"> DashBoard </button></a>
+        {% endif %}
+        
+        {% if not eli %}
+        <a href="/dealer-register"><button class="btn btn-primary" type="button">Register a Dealer</button></a>
+        {% endif %}
+    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'app_usage/header 2.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Meet at one Point APD program</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, illo.</p>
+                    <a href="/buy"> <button type="button" class="btn btn-success">BUY</button></a>
+                    <a href="/sell"><button type="button" class="btn btn-warning">SELL</button></a>
+                    <a href="/rent"><button type="button" class="btn btn-info">RENT</button></a>
+                        <div class="container d-flex justify-content-center my-3">
+        {% if eligible == "YES" %}
+        <a class="d-flex" href="/dealer-dashboard"><button class="btn btn-primary"> DashBoard </button></a>
+        {% endif %}
+        
+        {% if not eli %}
+        <a href="/dealer-register"><button class="btn btn-primary" type="button">Register a Dealer</button></a>
+        {% endif %}
+    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'app_usage/header 3.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Meet at one Point APD program</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, illo.</p>
+                    <a href="/buy"> <button type="button" class="btn btn-success">BUY</button></a>
+                    <a href="/sell"><button type="button" class="btn btn-warning">SELL</button></a>
+                    <a href="/rent"><button type="button" class="btn btn-info">RENT</button></a>
+                        <div class="container d-flex justify-content-center my-3">
+        {% if eligible == "YES" %}
+        <a class="d-flex" href="/dealer-dashboard"><button class="btn btn-primary"> DashBoard </button></a>
+        {% endif %}
+        
+        {% if not eli %}
+        <a href="/dealer-register"><button class="btn btn-primary" type="button">Register a Dealer</button></a>
+        {% endif %}
+    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- <div class="container d-flex justify-content-center my-3">
+        {% if eligible == "YES" %}
+        <a class="d-flex" href="/dealer-dashboard"><button class="btn btn-success"> DashBoard </button></a>
+        {% endif %}
+        
+        {% if not eli %}
+        <a href="/dealer-register"><button class="btn btn-success" type="button">Register a Dealer</button></a>
+        {% endif %}
+    </div> -->
+    <div class="mt-5 container">
+        <h1 class="d-flex justify-content-center">Our Partners</h1>
+        <img src="{% static 'app_usage/logos.jpeg' %}" class="d-block w-100" alt="...">
+    </div>
+
+    <div class="container">
+        <h1 class="d-flex justify-content-center">Featured Properties</h1>
+        {% for property in properties %}
+          
+        <div class="card mt-5 mx-1 d-inline-block" style="width: 18rem;">
+          <img src="/media/{{property.image}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <!-- <p>By: <button class="btn btn-sm btn-success">{{property.dealer}}</button></p> -->
+              <h5 class="card-title">{{property.title}} <button type="button" class="btn btn-sm btn-dark">Rs. {{property.price}}</button></h5>
+              <p class="card-text">{{property.description|slice:":100"}}....................</p>
+              <div class="mt-1 mb-1 properties_pro">
+                <button type="button" class="btn mt-1 btn-sm btn-secondary">For: {{property.purpose}}</button>
+                <button type="button" class="btn mt-1 btn-sm btn-secondary">{{property.city}}</button>
+                <button type="button" class="btn mt-1 btn-sm btn-secondary">{{property.category}}</button>
+                <button type="button" class="btn mt-1 btn-sm btn-secondary">{{property.area}} {{property.unit}}</button>
+              </div>
+              <a href="property/{{property.sno}}" class="btn btn-primary">Check Full Details</a>
+            </div>
+          </div>
+          {% endfor %}
+          
+    </div>
+
+    <div class="mt-5 container bg-success text-light">
+        <h2 class="d-flex justify-content-center">Contact a Dealer and Live in your Dream place - APD Project</h2>
+    </div>
+
+
+
+
+    {% endblock body %}

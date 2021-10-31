@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+<div class="container">
+    <div class="buttons d-flex justify-content-center">
+
+        <!-- <a href="buy"> <button type="button" class="mx-1 mt-2 btn btn-success">BUY</button></a>
+        <a href="sell"><button type="button" class="mx-1 mt-2 btn btn-warning">SELL</button></a>
+        <a href="rent"><button type="button" class="mx-1 mt-2 btn btn-info">RENT</button></a> -->
+    </div>
+    <div class="mt-4 property_details">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    For: <button type="button" class="btn btn-sm btn-dark">{{property.purpose}}</button>
+                    <!-- <p class="mt-1">By: <button class="btn btn-sm btn-success">{{property.dealer}}</button></p> -->
+                    <h5 class="mt-2">{{property.title}}</h5>
+                    <p>{{property.full_location}}</p>
+                    <img width="700px" src="/media/{{property.image}}" class="mt-2 border border-success" alt="...">
+
+
+                </div>
+                <div class="col-sm-4 border">
+                    <h4 class="mt-2">Dealer Details:</h4>
+                    <hr>
+                    <h6 class="success">Dealer Name: {{property.name}}</h6>
+                    <h6 class="success">Phone Number: {{property.number}}</h6>
+                    <h6 class="success">Email Address: {{property.email}}</h6>
+
+
+
+                </div>
+            </div>
+
+            <div class="container mt-5 d-flex justify-content-center">
+                <button type="button" class="mx-1 mt-2 btn btn-success">Rs. {{property.price}} Price</button>
+                <button type="button" class="mx-1 mt-2 btn btn-success">{{property.category}}</button>
+                <button type="button" class="mx-1 mt-2 btn btn-success">{{property.area}} {{property.unit}}</button>
+                <button type="button" class="mx-1 mt-2 btn btn-success">City: {{property.city}}</button>
+            </div>
+
+            <div class="container mt-5 mb-5 border d-flex justify-content-center">
+                <p class="p-2">{{property.description}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock body %}
